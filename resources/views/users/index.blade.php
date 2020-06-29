@@ -4,7 +4,7 @@
 <body>
     <div class="container">
         <div class="card-header">
-            <h1>Lista de Usuarios</h1>
+            <h1>Users List</h1>
         </div>
         <br>
         <table class="table table-striped">
@@ -21,7 +21,7 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr>
-                <th>{{$user->id}}</th>
+                    <th>{{$user->id}}</th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     @if ($user->email_verified_at)
@@ -29,14 +29,20 @@
                     @else
                     <td scope="row"><i class="fas fa-times"></i></td>
                     @endif
-                    @if ($user->status)
-                        <td><a href="" class="btn btn-primary">Enable</a></td>
-                    @else
-                      <td><a href="" class="btn btn-secundary">Disable</a></td>   
-                    @endif
+                    <td>
+                      <form action="{{route('changeStatus', $user->id)}}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            @if ($user->status)
+                            <input class="btn btn-primary" type="submit" value="Enable">
+                            @else
+                            <input class="btn btn-primary" type="submit" value="Disable">
+                            @endif
+                      </form>
+                  </td>
                     <td>
                     <a href="/users/{{$user->id}}/edit">Edit</a>
-                  </td>
+                    </td>
                   </tr> 
                 @endforeach
             </tbody>

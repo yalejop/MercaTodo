@@ -23,3 +23,5 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('users', 'UserController')->middleware('verified');
+
+Route::patch('usuarios/{userid}', 'UserController@changeStatus')->name('changeStatus');

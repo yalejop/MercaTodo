@@ -91,4 +91,20 @@ class UserController extends Controller
     {
         //
     }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $users = User::find($id);
+        
+        if ($users->status) {
+            $check = false;
+        }else {
+            $check = true;
+        }
+        $users->status = $check;
+        $users->save();
+        
+        return redirect('/users'); 
+
+    }
 }
