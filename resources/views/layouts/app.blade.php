@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bee638d3bf.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -33,7 +34,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <ul class="navbar-nav mr-auto">
+                            <li><a href="/users"> Users List</a></li>
+                        </ul>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

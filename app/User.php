@@ -66,6 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     return false;
     }
+    
     public function hasRole($role)
     {
     if ($this->roles()->where('name', $role)->first()) {

@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users', compact('users'));
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -58,7 +58,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::findOrFail($id);
+        return view('users.edit', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -70,7 +73,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $users = User::findOrFail($id);
+        $users->name = $request->get('name');
+        $users->email = $request->get('email');
+        $users->save();
+
+        return redirect('/users');
     }
 
     /**
