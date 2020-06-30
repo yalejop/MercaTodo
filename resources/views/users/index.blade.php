@@ -34,14 +34,14 @@
                             @csrf
                             @method('PATCH')
                             @if ($user->status)
-                            <input class="btn btn-primary" type="submit" value="Enable">
+                            <input class="btn btn-success" type="submit" value="Enable">
                             @else
-                            <input class="btn btn-primary" type="submit" value="Disable">
+                            <input class="btn btn-dark" type="submit" value="Disable">
                             @endif
                       </form>
                   </td>
                     <td>
-                    <a href="/users/{{$user->id}}/edit">Edit</a>
+                    <a class="btn btn-light" href="/users/{{$user->id}}/edit">Edit</a>
                     </td>
                   </tr> 
                 @endforeach
