@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Admin;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -12,7 +13,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::all();
         return view('users.index', ['users' => $users]);
@@ -107,4 +108,13 @@ class UserController extends Controller
         return redirect('/users'); 
 
     }
+
+    public function __construct()
+        {   
+        $this->middleware(Admin::class)->only('edit');
+
+       /*  $this->middleware('log')->only('index');
+
+        $this->middleware('subscribed')->except('store'); */
+        }
 }

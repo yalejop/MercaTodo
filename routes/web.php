@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,8 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified',Admin::class);
 
 Route::resource('users', 'UserController')->middleware('verified');
 
-Route::patch('usuarios/{userid}', 'UserController@changeStatus')->name('changeStatus');
+Route::patch('usuarios/{userid}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified',Admin::class);
