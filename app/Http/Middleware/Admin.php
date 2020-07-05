@@ -18,9 +18,10 @@ class Admin
     {
         $user = Auth::user();
 
-        if ($user->admin) {
+        if (!$user->admin) {
+            return redirect('/noadmin');
+        }
+
         return $next($request);
-        } else {
-        return redirect('users')->with('message', 'No tienes permisos para acceder a esa ruta');}
     }
 }
