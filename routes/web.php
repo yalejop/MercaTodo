@@ -19,8 +19,8 @@ Route::get('/', 'HomeController@index')->middleware('verified');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified',Admin::class);
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified', 'admin');
 
-Route::resource('users', 'UserController')->middleware('verified');
+Route::resource('users', 'UserController')->middleware('verified', 'admin');
 
-Route::patch('usuarios/{userid}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified',Admin::class);
+Route::patch('usuarios/{userid}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified', 'admin');
