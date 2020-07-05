@@ -74,9 +74,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validData = $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required'
+        ]);
+
         $users = User::findOrFail($id);
-        $users->name = $request->get('name');
-        $users->email = $request->get('email');
+        $users->name = $validData['name'];
+        $users->email = $validData['email'];
         $users->save();
 
         return redirect('/users');
