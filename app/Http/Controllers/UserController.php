@@ -102,12 +102,12 @@ class UserController extends Controller
     {
         $users = User::find($id);
         
-        if ($users->status) {
+        if ($users->isEnable) {
             $check = false;
         }else {
             $check = true;
         }
-        $users->status = $check;
+        $users->isEnable = $check;
         $users->save();
         
         return redirect('/users'); 

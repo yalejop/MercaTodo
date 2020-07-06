@@ -18,7 +18,7 @@ class Admin
     {
         $user = Auth::user();
 
-        if (!$user->admin) {
+        if (!$user->isAdmin) {
             return redirect('/noadmin');
         }
 

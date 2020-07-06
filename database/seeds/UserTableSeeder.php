@@ -20,8 +20,8 @@ class UserTableSeeder extends Seeder
         $user->name = 'Admin';
         $user->email = 'admin@example.com';
         $user->password = bcrypt('secret');
-        $user->admin = true;
-        $user->status = true;
+        $user->isAdmin = true;
+        $user->isEnable = true;
         $user->save();
         $user->roles()->attach($role_admin);
 

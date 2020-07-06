@@ -33,7 +33,7 @@
                       <form action="{{route('changeStatus', $user->id)}}" method="POST">
                             @csrf
                             @method('PATCH')
-                            @if ($user->status)
+                            @if ($user->isEnable)
                             <input class="btn btn-success" type="submit" value="Enable">
                             @else
                             <input class="btn btn-dark" type="submit" value="Disable">
