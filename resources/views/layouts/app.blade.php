@@ -35,7 +35,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <ul class="navbar-nav mr-auto">
-                            <li><a href="/users"> Users List</a></li>
+                            <li class="nav-item">
+                                <a href="{{route('role.index')}}" class="nav-link">Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('users.index')}}" class="nav-link">Users List</a>
+                            </li> 
                         </ul>
                     </ul>
 
