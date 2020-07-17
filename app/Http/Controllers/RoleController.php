@@ -81,9 +81,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $permission_role = [];
+
+        foreach($role->permissions as $permission) {
+            $permission_role[] = $permission->id;
+        }
+
+        $permissions = Permission::get();
+
+        return view('role.edit', compact('permissions', 'role', 'permission_role'));
     }
 
     /**
