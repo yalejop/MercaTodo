@@ -28,3 +28,5 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::resource('users', 'UserController')->middleware('verified', 'admin');
 
 Route::patch('usuarios/{userid}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified', 'admin');
+
+Route::resource('/role', 'RoleController')->names('role');
