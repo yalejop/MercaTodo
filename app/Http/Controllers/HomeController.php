@@ -21,9 +21,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
-        $request->user()->authorizeRoles(['user', 'admin']);
+        
         return view('home');
     }
 
