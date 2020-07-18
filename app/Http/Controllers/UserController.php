@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('haveAccess', 'users.index');
         $users = User::with('roles')->orderBy('id')->paginate(6);
         return view('users.index', compact('users'));
     }
@@ -60,9 +61,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = User::findOrFail($id);
-        return view('users.edit', [
-            'users' => $users
-        ]);
+        return view('users.edit', compact('users'));
     }
 
     /**
