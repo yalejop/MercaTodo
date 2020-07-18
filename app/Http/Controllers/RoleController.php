@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Permission\Model\Permission;
 use App\Permission\Model\Role;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -15,7 +16,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::orderBy('id', 'Desc')->paginate(2);
+        Gate::authorize('haveAccess', 'role.index');
+        $roles = Role::orderBy('id', 'Desc')->paginate(3);
         
         return view('role.index', compact('roles'));
     }
@@ -27,6 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('haveAccess', 'role.create');
         $permissions = Permission::get();
 
         return view('role.create', compact('permissions'));
@@ -40,6 +43,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('haveAccess', 'role.create');
         $request->validate([
             'name' => 'required|max:50|unique:roles,name',
             'slug' => 'required|max:50|unique:roles,slug',
@@ -64,6 +68,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $this->authorize('haveAccess', 'role.show');
         $permission_role = [];
 
         foreach($role->permissions as $permission) {
@@ -83,6 +88,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $this->authorize('haveAccess', 'role.edit');
         $permission_role = [];
 
         foreach($role->permissions as $permission) {
@@ -103,6 +109,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        $this->authorize('haveAccess', 'role.edit');
         $request->validate([
             'name' => 'required|max:50|unique:roles,name,'.$role->id,
             'slug' => 'required|max:50|unique:roles,slug,'.$role->id,
@@ -127,6 +134,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $this->authorize('haveAccess', 'role.destroy');
         $role->delete();
 
         return redirect()->route('role.index')->with('status_success', 'Role  Succesfully removed');

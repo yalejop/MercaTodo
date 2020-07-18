@@ -7,6 +7,9 @@
             <h1>Users List</h1>
         </div>
         <br>
+
+        @include('custom.message')
+        
         <table class="table table-striped">
             <thead>
               <tr>
@@ -14,6 +17,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
                 <th scope="col">Verified</th>
+                <th scope="col">Role</th>
                 <th scope="col">Status</th>
                 <th scope="col">Editar</th>
               </tr>
@@ -29,6 +33,11 @@
                     @else
                     <td scope="row"><i class="fas fa-times"></i></td>
                     @endif
+                    <td>
+                      @isset($user->roles[0]->name)
+                        {{ $user->roles[0]->name }}
+                      @endisset
+                    </td>
                     <td>
                       <form action="{{route('changeStatus', $user->id)}}" method="POST">
                             @csrf
