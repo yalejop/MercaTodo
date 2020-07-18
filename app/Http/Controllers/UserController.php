@@ -13,10 +13,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        $users = User::with('roles')->orderBy('id')->paginate(6);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
         $users->email = $validData['email'];
         $users->save();
 
-        return redirect('/users');
+        return redirect()->route('users.index')->with('status_success', 'User Update Succesfully');
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller
         //
     }
 
-    public function changeStatus(Request $request, $id)
+    public function changeStatus($id)
     {
         $users = User::find($id);
         
@@ -114,12 +114,12 @@ class UserController extends Controller
 
     }
 
-    public function __construct()
-        {   
+    /* public function __construct()
+    {   
         $this->middleware(Admin::class)->only('edit');
 
-       /*  $this->middleware('log')->only('index');
+       $this->middleware('log')->only('index');
 
-        $this->middleware('subscribed')->except('store'); */
-        }
+        $this->middleware('subscribed')->except('store'); 
+    } */
 }

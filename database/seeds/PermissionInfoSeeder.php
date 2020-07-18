@@ -47,12 +47,12 @@ class PermissionInfoSeeder extends Seeder
         ]);
 
         //Role Registered User
-       /*  $roleUser = Role::create([
+       $roleUser = Role::create([
             'name' => 'Registered User',
             'slug' => 'registereduser',
             'description' => 'Registered User',
             'full-access' => 'no'
-        ]); */
+        ]); 
 
         //table role_user
         $userAdmin->roles()->sync([$roleAdmin->id]);

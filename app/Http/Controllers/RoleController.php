@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Permission\Model\Permission;
 use App\Permission\Model\Role;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -15,7 +16,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::orderBy('id', 'Desc')->paginate(2);
+        //Gate::authorize('haveAccess', 'role.index');
+        $roles = Role::orderBy('id', 'Desc')->paginate(3);
         
         return view('role.index', compact('roles'));
     }
