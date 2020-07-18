@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->decimal('price');
+            $table->integer('stock');
+            $table->boolean('isEnable')->default(true);
             $table->text('tags')->nullable();
             $table->timestamps();
         });

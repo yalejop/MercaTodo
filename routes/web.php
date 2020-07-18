@@ -30,3 +30,5 @@ Route::resource('users', 'UserController')->middleware('verified');
 Route::patch('usuarios/{id}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified');
 
 Route::resource('/role', 'RoleController')->names('role');
+
+Route::resource('/products', 'ProductController')->names('products');
