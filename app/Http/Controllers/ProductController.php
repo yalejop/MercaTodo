@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -37,7 +38,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'titulo' => 'required|min:6',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required|image',
+            'imagen' => 'required',
+            'tags'=> 'required',
+        ]);
+
+        //obtener ruta de la imagen
+        $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
+
+        //resize de la imagen
+        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1000, 550);
+        $img->save();
     }
 
     /**

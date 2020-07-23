@@ -4,7 +4,7 @@
 <body>
     <div class="container">
         <div class="card-header">
-            <h1>Users List</h1>
+            <h1>Products Manager</h1>
         </div>
         <br>
 
@@ -29,11 +29,15 @@
                     <td>{{$product->price}}</td>
                     <td>{{$product->stock}}</td>
                     <td>
-                        @if ($product->isEnable)
-                        <input class="btn btn-success" type="submit" value="Enable">
-                        @else
-                        <input class="btn btn-dark" type="submit" value="Disable">
-                        @endif
+                        <form action="{{route('changeStatus', $product->id)}}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            @if ($product->isEnable)
+                            <input class="btn btn-success" type="submit" value="Enable">
+                            @else
+                            <input class="btn btn-dark" type="submit" value="Disable">
+                            @endif
+                      </form>
                     </td>
                     <td>
                         <a class="btn btn-light" href="{{route('products.edit', $product->id)}}">Edit</a>
