@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('botones')
+
+    <a href="{{route('products.create')}}" class="btn btn-primary mr-2">Create Product</a>
+    
+@endsection
+
 @section('content')
 <body>
     <div class="container">

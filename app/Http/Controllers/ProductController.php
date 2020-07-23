@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id')->paginate(10);
+        $products = Product::paginate(10);
 
         return view('products.index', compact('products'));
     }
@@ -25,9 +25,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $products)
     {
-        return view('products.create');
+        return view('products.create', compact('products'));
     }
 
     /**
@@ -39,20 +39,33 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'titulo' => 'required|min:6',
+            'title' => 'required|min:6',
             'description' => 'required',
             'price' => 'required',
-            'stock' => 'required|image',
-            'imagen' => 'required',
+            'stock' => 'required',
+            'image' => 'required|image',
             'tags'=> 'required',
         ]);
 
         //obtener ruta de la imagen
-        $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
+        $route_image = $request['image']->store('upload-products', 'public');
 
         //resize de la imagen
-        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1000, 550);
+        $img = Image::make( public_path("storage/{$route_image}"))->fit(1000, 550);
         $img->save();
+
+        //almacenar en la base de datos con modelo
+
+        $products = Product::create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'price' => $data['price'],
+            'stock' => $data['stock'],
+            'image' => $route_image,
+            'tags' => $data['tags'],
+        ]);
+
+        return view('products.index' , compact('products'));
     }
 
     /**
