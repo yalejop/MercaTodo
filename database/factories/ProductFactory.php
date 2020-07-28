@@ -10,6 +10,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'title' =>$faker->sentence,
         'description' =>$faker->text(100),
         'price' =>$faker->numberBetween($min = 0, $max = 200),
+        'stock' =>$faker->numberBetween($min= 0, $max =10),
         'tags' =>$faker->sentence($nbWords = 6, $variableNbWords = true),
     ];
 });

@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    @yield('styles')
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/bee638d3bf.js" crossorigin="anonymous"></script>
@@ -37,6 +39,9 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a href="{{route('role.index')}}" class="nav-link">Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('products.index')}}" class="nav-link">Products</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('users.index')}}" class="nav-link">Users List</a>
@@ -79,10 +84,19 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
+            <div class="row">
+                <div class="py-4 mt-1 col-12">
+                    @yield('botones')
+                </div>
+                <main class="py-4 mt-1 col-12">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        
     </div>
+    @yield('scripts')
 </body>
 </html>
