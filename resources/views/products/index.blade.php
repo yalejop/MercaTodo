@@ -7,6 +7,8 @@
 @endsection
 
 @section('content')
+
+{{$products}}
 <body>
     <div class="container">
         <div class="card-header">
@@ -15,7 +17,7 @@
         <br>
 
         @include('custom.message')
-        
+
         <table class="table table-striped">
             <thead>
               <tr>
@@ -30,7 +32,7 @@
             <tbody>
                 @foreach ($products as $product)
                 <tr>
-                    <th>{{$product->id}}</th>
+                    <td>{{$product->id}}</td>
                     <td>{{$product->title}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->stock}}</td>
@@ -46,6 +48,7 @@
                       </form>
                     </td>
                     <td>
+                        <a href="{{route('products.show', $product->id)}}" class="btn btn-dark mr-1">Ver</a>
                         <a class="btn btn-light" href="{{route('products.edit', $product->id)}}">Edit</a>
                     </td>
                   </tr> 

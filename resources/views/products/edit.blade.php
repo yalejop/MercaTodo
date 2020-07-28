@@ -11,31 +11,31 @@
 @endsection
 
 @section('content')
-
     <h2 class="text-center mb-5">
-        Create New Product
+        Edit Products: {{$products->title}}
     </h2>
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <form method="post" action="{{route('products.store')}}" enctype="multipart/form-data" novalidate>
+            <form method="post" action="{{route('products.update', $products->id)}}" enctype="multipart/form-data" novalidate>
                 @csrf
+                @method('PUT')
                 <div class="form-group">
-                        <label for="title">Title Product:</label>
+                        <label for="products">Products Title:</label>
                         <input type="text" name="title" class="form-control @error('title')
                         is-invalid
-                    @enderror" id="title"
+                     @enderror" id="products"
                         placeholder="Products Title"
-                        value="{{old('title')}}">
-                    @error('title')
+                        value="{{$products->title}}">
+                     @error('title')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
-                    @enderror
+                     @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label for="description">Description:</label>
-                    <input type="hidden" name="description" id="description" value="{{old('description')}}">
+                    <input type="hidden" name="description" id="description" value="{{$products->description}}">
                     <trix-editor
                     class="form-control @error('description')
                     is-invalid @enderror"
@@ -52,7 +52,7 @@
                     is-invalid
                 @enderror" id="price"
                     placeholder="Price Product"
-                    value="{{old('price')}}">
+                    value="{{$products->price}}">
                 @error('price')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
@@ -65,7 +65,7 @@
                     is-invalid
                 @enderror" id="stock"
                     placeholder="Stock Product"
-                    value="{{old('stock')}}">
+                    value="{{$products->stock}}">
                 @error('stock')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
@@ -76,6 +76,13 @@
                     <label for="image">Select an image:</label>
                     <input type="file" src="" alt="image receta" id="image" class="form-control @error('image')
                     is-invalid @enderror" name="image">
+
+                    <div class="mt-4">
+                        <p>Current Image:</p>
+
+                        <img src="/storage/{{$products->image}}" alt="Imagen a editar" style="width: 300px">
+                    </div>
+
                     @error('image')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -88,7 +95,7 @@
                     is-invalid
                 @enderror" id="tags"
                     placeholder="Tags Product"
-                    value="{{old('tags')}}">
+                    value="{{$products->tags}}">
                 @error('tags')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
@@ -96,14 +103,14 @@
                 @enderror
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Add Product">
+                    <input type="submit" class="btn btn-primary" value="Save">
                 </div>
             </form>
         </div>
     </div>
 
     @section('scripts')
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.js" integrity="sha512-EkeUJgnk4loe2w6/w2sDdVmrFAj+znkMvAZN6sje3ffEDkxTXDiPq99JpWASW+FyriFah5HqxrXKmMiZr/2iQA==" crossorigin="anonymous"defer></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.js" integrity="sha512-EkeUJgnk4loe2w6/w2sDdVmrFAj+znkMvAZN6sje3ffEDkxTXDiPq99JpWASW+FyriFah5HqxrXKmMiZr/2iQA==" crossorigin="anonymous" defer></script>
     @endsection
 
 @endsection

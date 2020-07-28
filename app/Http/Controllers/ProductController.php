@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::paginate(5);
 
         return view('products.index', compact('products'));
     }
@@ -65,7 +65,10 @@ class ProductController extends Controller
             'tags' => $data['tags'],
         ]);
 
-        return view('products.index' , compact('products'));
+        //return $products;
+        //return view('products.index' , compact('products'));
+        //return redirect()->action('ProductController@index');
+        return redirect()->route('products.index', compact('products'));
     }
 
     /**
@@ -76,7 +79,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::find($id);
+
+        return view('products.show', compact('products'));
+        //return $products;
     }
 
     /**
@@ -87,7 +93,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::find($id);
+
+        return view('products.edit', compact('products'));
     }
 
     /**
@@ -99,7 +107,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:6',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'tags'=> 'required',
+        ]);
+
+         //Asignar los valores
+         $products = Product::find($id);
+         $products->title = $data['title'];
+         $products->description = $data['description'];
+         $products->price = $data['price'];
+         $products->stock = $data['stock'];
+         $products->tags = $data['tags'];
+
+        //Si el usuario sube una nueva imagen
+        if(request('image')) {
+            //obtener ruta de la imagen
+            $route_image = $request['image']->store('upload-products', 'public');
+
+            //resize de la imagen
+            $img = Image::make( public_path("storage/{$route_image}"))->fit(1000, 550);
+            $img->save();
+
+            //Asignar al Objeto
+            $products->image = $route_image;
+        }
+
+        $products->save();
+       
+        return redirect()->route('products.index');
     }
 
     /**
