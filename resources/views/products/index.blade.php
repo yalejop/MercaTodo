@@ -7,12 +7,25 @@
 @endsection
 
 @section('content')
-
 <body>
     <div class="container">
         <div class="card-header">
             <h1>Products Manager</h1>
         </div>
+        <br>
+        <form action="" class="form-inline mt-2 ml-2">
+            <input 
+            class="form-control mr-sm-2 float-right" type="search" 
+            name="search" 
+            id="search"
+            placeholder="Search your Product"
+            aria-label="Search">
+            <button 
+            class="btn btn-outline-dark my-2 my-sm-0"
+            type="submit">
+            Buscar
+            </button>
+        </form>
         <br>
         @include('custom.message')
 
