@@ -8,14 +8,12 @@
 
 @section('content')
 
-{{$products}}
 <body>
     <div class="container">
         <div class="card-header">
             <h1>Products Manager</h1>
         </div>
         <br>
-
         @include('custom.message')
 
         <table class="table table-striped">
