@@ -10928,3 +10928,7 @@ a.text-dark:focus {
   }
 }
 
+trix-editor {
+  min-height: 400px;
+}
+
