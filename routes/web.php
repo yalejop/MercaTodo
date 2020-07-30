@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->middleware('verified');
+Route::get('/', 'InicioController@index')->name('inicio.index');
+
+//Route::get('/', 'HomeController@index')->middleware('verified');
 
 Route::get('/noadmin', function() {
     return 'No tienes permisos para acceder a esa ruta';
