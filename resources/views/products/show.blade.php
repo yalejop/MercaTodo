@@ -14,7 +14,7 @@
             <div class="products">
                 <h2 class="my-3 text-primary">Description:
                 </h2>
-                {{$products->description}}
+                {!!$products->description!!}
             </div>
 
             <div class="tags">

@@ -8,16 +8,24 @@ use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('auth', ['except' => ['show', 'search']]);
+        $this->middleware('verified');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(5);
+        if($request){
+            $query = trim($request->get('search'));
+            $products = Product::where('title', 'LIKE', '%'.$query.'%')->paginate(10);
 
-        return view('products.index', compact('products'));
+            return view('products.index', compact('products', 'query'));
+        }
     }
 
     /**
@@ -150,5 +158,34 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changeStatusProducts($id)
+    {
+        $products = Product::find($id);
+        
+        if ($products->isEnable) {
+            $check = false;
+        }else {
+            $check = true;
+        }
+        $products->isEnable = $check;
+        
+        $products->save();
+        
+        return redirect(route('products.index')); 
+
+    }
+
+    public function search(Request $request)
+    {
+        //$busqueda = $request['buscar'];
+        $search = $request->get('search');
+
+        $products = Product::where('title', 'like', '%' . $search. '%')->paginate(2);
+
+        $products->appends(['search' => $search]);
+
+        return view('search.show', compact('products', 'search'));
     }
 }
