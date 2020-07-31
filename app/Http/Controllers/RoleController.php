@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         Gate::authorize('haveAccess', 'role.index');
-        $roles = Role::orderBy('id', 'Desc')->paginate(3);
+        $roles = Role::orderBy('id')->paginate(3);
         
         return view('role.index', compact('roles'));
     }
