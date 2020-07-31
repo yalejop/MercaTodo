@@ -8,6 +8,11 @@ use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('auth', ['except' => ['show', 'search']]);
+        $this->middleware('verified');
+    }
     /**
      * Display a listing of the resource.
      *
