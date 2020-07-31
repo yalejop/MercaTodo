@@ -176,4 +176,16 @@ class ProductController extends Controller
         return redirect(route('products.index')); 
 
     }
+
+    public function search(Request $request)
+    {
+        //$busqueda = $request['buscar'];
+        $search = $request->get('search');
+
+        $products = Product::where('title', 'like', '%' . $search. '%')->paginate(2);
+
+        $products->appends(['search' => $search]);
+
+        return view('search.show', compact('products', 'search'));
+    }
 }
