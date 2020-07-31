@@ -51,7 +51,7 @@
             <td>
               <form action="{{route('changeStatus', $user->id)}}" method="POST">
                 @csrf
-                @method('PATCH')
+                @method('PUT')
                 @if ($user->isEnable)
                 <input class="btn btn-success mb-2 d-block w-100" type="submit" value="Enable">
                 @else

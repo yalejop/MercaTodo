@@ -154,4 +154,21 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function changeStatusProducts($id)
+    {
+        $products = Product::find($id);
+        
+        if ($products->isEnable) {
+            $check = false;
+        }else {
+            $check = true;
+        }
+        $products->isEnable = $check;
+        
+        $products->save();
+        
+        return redirect(route('products.index')); 
+
+    }
 }

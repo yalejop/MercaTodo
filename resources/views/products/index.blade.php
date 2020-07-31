@@ -67,7 +67,7 @@
                     <td>${{$product->price}}</td>
                     <td>{{$product->stock}}</td>
                     <td>
-                        <form action="{{route('changeStatus', $product->id)}}" method="POST">
+                        <form action="{{route('changeStatusProducts', $product->id)}}" method="POST">
                             @csrf
                             @method('PUT')
                             @if ($product->isEnable)

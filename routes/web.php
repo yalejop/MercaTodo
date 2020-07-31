@@ -19,18 +19,23 @@ Route::get('/', 'InicioController@index')->name('inicio.index');
 
 //Route::get('/', 'HomeController@index')->middleware('verified');
 
-Route::get('/noadmin', function() {
+/* Route::get('/noadmin', function() {
     return 'No tienes permisos para acceder a esa ruta';
-});
+}); */
 
-Auth::routes(['verify' => true]);
+//Products search
+Route::get('/search', 'ProductController@search')->name('search.show');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('verified');
 
-Route::patch('usuarios/{id}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified');
+Route::put('usuarios/{id}', 'UserController@changeStatus')->name('changeStatus')->middleware('verified');
 
 Route::resource('/role', 'RoleController')->names('role');
 
 Route::resource('/products', 'ProductController')->names('products');
+
+Route::put('/productos/{id}', 'ProductController@changeStatusProducts')->name('changeStatusProducts')->middleware('verified');
+
+Auth::routes(['verify' => true]);
