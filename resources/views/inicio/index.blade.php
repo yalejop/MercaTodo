@@ -23,19 +23,19 @@
 @section('content')
     
     <div class="container nuevas-recetas">
-        <h2 class="titulo-categoria text-uppercase mb-4">Latest Products</h2>
+        <h2 class="user-title text-uppercase mb-4">Latest Products</h2>
         <div class="owl-carousel owl-theme">
             @foreach ($nuevos as $nuevo)
                 <div class="card">
                     <img src="/storage/{{$nuevo->image}}" alt="Imagen Receta" class="card-img-top">
-
                     <div class="card-body">
                         <h3>{{ Str::title($nuevo->title)}}</h3>
-
                         <p>
                             {{ Str::words(strip_tags($nuevo->description), 20)}}
                         </p>
-
+                        <p class="item-price">
+                            ${{$nuevo->price}}
+                        </p>
                         <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Product</a>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="container nuevas-recetas">
-        <h2 class="titulo-categoria text-uppercase mb-4 mt-4">All Products</h2>
+        <h2 class="user-title text-uppercase mb-4 mt-4">All Products</h2>
         <div class="row">
             @foreach ($nuevos as $nuevo)
             <div class="col-md-4 mb-2">
@@ -65,5 +65,8 @@
             </div>
             @endforeach
         </div>
+    </div>
+    <div>
+        {{$nuevos->links()}}
     </div>
 @endsection

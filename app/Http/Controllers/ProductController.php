@@ -12,6 +12,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth', ['except' => ['show', 'search']]);
         $this->middleware('verified');
+        $this->middleware('isAdmin', ['except' => ['show', 'search']]);
     }
     /**
      * Display a listing of the resource.
@@ -182,7 +183,7 @@ class ProductController extends Controller
         //$busqueda = $request['buscar'];
         $search = $request->get('search');
 
-        $products = Product::where('title', 'like', '%' . $search. '%')->paginate(2);
+        $products = Product::where('title', 'like', '%' . $search. '%')->paginate(1);
 
         $products->appends(['search' => $search]);
 
