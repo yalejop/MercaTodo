@@ -10948,6 +10948,10 @@ trix-editor {
   font-size: 20px;
 }
 
+.nav-color {
+  background-color: #ffed4a;
+}
+
 .user-title {
   color: #333;
   text-transform: uppercase;
