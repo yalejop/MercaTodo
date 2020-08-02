@@ -6,7 +6,7 @@
 @endsection
 
 @section('hero')
-    <div class="hero-categorias">
+    <div class="hero-products">
         <form action="{{route('search.show')}}" class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-md-4 texto-buscar">
@@ -22,7 +22,7 @@
 
 @section('content')
     
-    <div class="container nuevas-recetas">
+    <div class="container">
         <h2 class="user-title text-uppercase mb-4">Latest Products</h2>
         <div class="owl-carousel owl-theme">
             @foreach ($nuevos as $nuevo)
@@ -46,8 +46,8 @@
             @endforeach
         </div>
     </div>
-    <div class="container nuevas-recetas">
-        <h2 class="user-title text-uppercase mb-4 mt-4">All Products</h2>
+    <div class="container">
+        <h2 class="user-title text-uppercase mb-4 mt-2">All Products</h2>
         <div class="row">
             @foreach ($nuevos as $nuevo)
                 @if ($nuevo->isEnable)

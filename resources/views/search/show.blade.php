@@ -15,7 +15,7 @@
         <div class="col-md-6 mb-2">
             @foreach ($products as $product)
             <div class="card">
-                <img src="/storage/{{$product->image}}" alt="Imagen Receta" class="card-img-top">
+                <img src="/storage/{{$product->image}}" alt="Product Image" class="card-img-top">
 
                 <div class="card-body">
                     <h3>{{ Str::title($product->title)}}</h3>
