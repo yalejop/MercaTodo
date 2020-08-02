@@ -5,7 +5,7 @@
     <a href="{{route('inicio.index')}}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
         <svg class="icon-product" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>Back
     </a>
-    <a href="{{route('products.create')}}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
+    <a href="{{route('products.create')}}" class="btn btn-outline-success mr-2 text-uppercase font-weight-bold">
         <svg class="icon-product" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>Create New Product
     </a>
     
@@ -20,13 +20,13 @@
             id="search"
             placeholder="Search your Product"
             aria-label="Search">
-            <button 
+        <button 
             class="btn btn-outline-dark my-2 my-sm-0"
             type="submit">
             Search
-                <svg class="icon-user" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                 </svg>
-            </button>
+            <svg class="icon-user" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+        </button>
     </form>
     <br>
     @include('custom.message')

@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
+@section('botones')
+  <a href="{{route('inicio.index')}}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
+        <svg class="icon-product" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>Back
+  </a>
+@endsection
+
 @section('content')
  
   @include('custom.message')
-  <h1 class="user-title mb-5">
+  <h1 class="user-title mb-4 mt-4">
     Manage your Users
     <svg class="icon-nav" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
   </h1>
-  <div class="col-md-12 mx-auto bg-white p-3">     
+  <div class="col-md-12 mx-auto bg-white p-2">     
     <table class="table">
       <thead class="bg-primary text-light">
           <tr>
