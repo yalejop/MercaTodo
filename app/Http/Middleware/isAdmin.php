@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,12 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::user();
 
-        if (!$user->isAdmin) {
-            return redirect('/noadmin');
+        if ($request->user()->isAdmin) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect('/')->with('message', 'No tienes permiso para acceder a esta ruta');
+        
     }
 }

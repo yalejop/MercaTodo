@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light nav-color shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -90,10 +90,10 @@
 
         <div class="container">
             <div class="row">
-                <div class="py-4 mt-1 col-12">
+                <div class="py-2 mt-2 col-12">
                     @yield('botones')
                 </div>
-                <main class="py-4 mt-1 col-12">
+                <main class="mt-1 col-12">
                     @yield('content')
                 </main>
             </div>
