@@ -8,7 +8,7 @@
     <div class="hero-products">
         <form action="{{route('search.show')}}" class="container h-100">
             <div class="row h-100 align-items-center">
-                <div class="col-md-4 texto-buscar">
+                <div class="col-md-4 search-text">
                     <p class="display-4">
                         Find your Products for you next Purchase
                     </p>
@@ -26,7 +26,7 @@
             @foreach ($nuevos as $nuevo)
                 @if ($nuevo->isEnable)
                     <div class="card">
-                     <img src="/storage/{{$nuevo->image}}" alt="Imagen Receta" class="card-img-top">
+                     <img src="/storage/{{$nuevo->image}}" alt="Product Image" class="card-img-top">
                         <div class="card-body">
                             <h3>
                                 {{ Str::title($nuevo->title)}}
