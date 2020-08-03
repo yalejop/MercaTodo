@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class InicioController extends Controller
 {
+    /* Display a listing of the products in the inciio view */
+
     public function index()
     {
         //obtener las productos mas recientes

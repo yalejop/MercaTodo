@@ -2,7 +2,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
-
 @endsection
 
 @section('hero')
@@ -21,24 +20,31 @@
 @endsection
 
 @section('content')
-    
     <div class="container">
         <h2 class="user-title text-uppercase mb-4">Latest Products</h2>
         <div class="owl-carousel owl-theme">
             @foreach ($nuevos as $nuevo)
                 @if ($nuevo->isEnable)
                     <div class="card">
-                   
                      <img src="/storage/{{$nuevo->image}}" alt="Imagen Receta" class="card-img-top">
-                    
                         <div class="card-body">
-                            <h3>{{ Str::title($nuevo->title)}}</h3>
+                            <h3>
+                                {{ Str::title($nuevo->title)}}
+                            </h3>
                             <p>
                             {{ Str::words(strip_tags($nuevo->description), 20)}}
                             </p>
-                            <p class="item-price">
-                            ${{$nuevo->price}}
-                            </p>
+                            <div class="money">
+                                <div class="symbol">
+                                    $
+                                </div>
+                                <span class="price-value">
+                                    {{$nuevo->price}}
+                                </span>
+                                <span class="stock-value">
+                                    COP
+                                </span>
+                            </div>
                             <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Product</a>
                         </div>
                     </div>
@@ -54,16 +60,24 @@
                     <div class="col-md-4 mb-2">
                         <div class="card">
                             <img src="/storage/{{$nuevo->image}}" alt="Imagen Producto" class="card-img-top">
-
                             <div class="card-body">
-                                <h3>{{ Str::title($nuevo->title)}}</h3>
-
+                                <h3>
+                                    {{ Str::title($nuevo->title)}}
+                                </h3>
                                 <p>
                                     {{ Str::words(strip_tags($nuevo->description), 20)}}
                                 </p>
-                                <p class="item-price">${{$nuevo->price}}</p>
-                                <p>Stock:  {{$nuevo->stock}}</p>
-
+                                <div class="money">
+                                    <div class="symbol">
+                                        $
+                                    </div>
+                                    <span class="price-value">
+                                        {{$nuevo->price}}
+                                    </span>
+                                    <span class="stock-value">
+                                        COP
+                                    </span>
+                                </div>
                                 <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Products</a>
                             </div>
                         </div>

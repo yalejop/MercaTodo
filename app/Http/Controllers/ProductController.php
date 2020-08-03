@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function __construct() 
     {
         $this->middleware('auth', ['except' => ['show', 'search']]);
-        $this->middleware('verified');
+        //$this->middleware('verified');
         $this->middleware('isAdmin', ['except' => ['show', 'search']]);
     }
     /**
@@ -161,6 +161,9 @@ class ProductController extends Controller
         //
     }
 
+    /* this method is used for change the status of product in project
+    (if product is enable o disable to show in inicio view) */
+
     public function changeStatusProducts($id)
     {
         $products = Product::find($id);
@@ -177,6 +180,9 @@ class ProductController extends Controller
         return redirect(route('products.index')); 
 
     }
+
+    /* this method is used to find out products with title same or
+    similar at the search input in inicio view */
 
     public function search(Request $request)
     {

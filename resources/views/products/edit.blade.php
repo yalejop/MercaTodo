@@ -23,7 +23,9 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                        <label for="products">Products Title:</label>
+                        <label for="products">
+                            Products Title:
+                        </label>
                         <input type="text" name="title" class="form-control @error('title')
                         is-invalid
                      @enderror" id="products"
@@ -36,7 +38,9 @@
                      @enderror
                 </div>
                 <div class="form-group mt-3">
-                    <label for="description">Description:</label>
+                    <label for="description">
+                        Description:
+                    </label>
                     <input type="hidden" name="description" id="description" value="{{$products->description}}">
                     <trix-editor
                     class="form-control @error('description')
@@ -49,42 +53,45 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="price">Price Product:</label>
+                    <label for="price">
+                        Price Product:
+                    </label>
                     <input type="text" name="price" class="form-control @error('price')
                     is-invalid
-                @enderror" id="price"
+                    @enderror" id="price"
                     placeholder="Price Product"
                     value="{{$products->price}}">
-                @error('price')
+                    @error('price')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
-                @enderror
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="stock">Stock Product:</label>
+                    <label for="stock">
+                        Stock Product:
+                    </label>
                     <input type="number" name="stock" class="form-control @error('stock')
                     is-invalid
-                @enderror" id="stock"
+                    @enderror" id="stock"
                     placeholder="Stock Product"
                     value="{{$products->stock}}">
-                @error('stock')
+                    @error('stock')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
-                @enderror
+                    @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label for="image">Select an image:</label>
                     <input type="file" src="" alt="image receta" id="image" class="form-control @error('image')
                     is-invalid @enderror" name="image">
-
                     <div class="mt-4">
-                        <p>Current Image:</p>
-
+                        <p>
+                            Current Image:
+                        </p>
                         <img src="/storage/{{$products->image}}" alt="Imagen a editar" style="width: 300px">
                     </div>
-
                     @error('image')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -92,17 +99,19 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="tags">Tags Product:</label>
+                    <label for="tags">
+                        Tags Product:
+                    </label>
                     <input type="text" name="tags" class="form-control @error('tags')
                     is-invalid
-                @enderror" id="tags"
+                    @enderror" id="tags"
                     placeholder="Tags Product"
                     value="{{$products->tags}}">
-                @error('tags')
+                    @error('tags')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
-                @enderror
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Save">
