@@ -45,9 +45,9 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             @if ($user->email_verified_at)
-            <td scope="row"><i class="fas fa-check"></i></td>
+              <td scope="row"><i class="fas fa-check"></i></td>
             @else
-            <td scope="row"><i class="fas fa-times"></i></td>
+              <td scope="row"><i class="fas fa-times"></i></td>
             @endif
             <td>
               @isset($user->roles[0]->name)
@@ -66,7 +66,9 @@
               </form>
             </td>
             <td>
-              <a class="btn btn-info mb-2 d-block w-100" href="{{route('users.edit',$user->id)}}">Edit</a>
+              <a class="btn btn-info mb-2 d-block w-100" href="{{route('users.edit',$user->id)}}">
+                Edit
+              </a>
             </td>
           </tr> 
         @endforeach

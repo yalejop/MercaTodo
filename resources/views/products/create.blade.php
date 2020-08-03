@@ -5,11 +5,9 @@
 @endsection
 
 @section('botones')
-
-<a href="{{route('products.index')}}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
-    <svg class="icon-product" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>Back
-</a>
-    
+    <a href="{{route('products.index')}}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
+        <svg class="icon-product" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>Back
+    </a> 
 @endsection
 
 @section('content')
@@ -23,79 +21,91 @@
             <form method="post" action="{{route('products.store')}}" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="form-group">
-                        <label for="title">Title Product:</label>
-                        <input type="text" name="title" class="form-control @error('title')
-                        is-invalid
+                    <label for="title">
+                        Title Product:
+                    </label>
+                    <input type="text" name="title" class="form-control @error('title')
+                    is-invalid
                     @enderror" id="title"
-                        placeholder="Products Title"
-                        value="{{old('title')}}">
+                    placeholder="Products Title"
+                    value="{{old('title')}}">
                     @error('title')
-                        <span class="invalid-feedback d-block" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
                     @enderror
                 </div>
                 <div class="form-group mt-3">
-                    <label for="description">Description:</label>
+                    <label for="description">
+                        Description:
+                    </label>
                     <input type="hidden" name="description" id="description" value="{{old('description')}}">
                     <trix-editor
                     class="form-control @error('description')
                     is-invalid @enderror"
                     input="description"></trix-editor>
                     @error('description')
-                        <span class="invalid-feedback d-block" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="price">Price Product:</label>
+                    <label for="price">
+                        Price Product:
+                    </label>
                     <input type="text" name="price" class="form-control @error('price')
                     is-invalid
-                @enderror" id="price"
+                    @enderror" id="price"
                     placeholder="Price Product"
                     value="{{old('price')}}">
-                @error('price')
+                    @error('price')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
-                @enderror
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="stock">Stock Product:</label>
+                    <label for="stock">
+                        Stock Product:
+                    </label>
                     <input type="number" name="stock" class="form-control @error('stock')
                     is-invalid
-                @enderror" id="stock"
+                    @enderror" id="stock"
                     placeholder="Stock Product"
                     value="{{old('stock')}}">
-                @error('stock')
+                    @error('stock')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
-                @enderror
+                    @enderror
                 </div>
                 <div class="form-group mt-3">
-                    <label for="image">Select an image:</label>
+                    <label for="image">
+                        Select an image:
+                    </label>
                     <input type="file" src="" alt="image receta" id="image" class="form-control @error('image')
                     is-invalid @enderror" name="image">
                     @error('image')
-                        <span class="invalid-feedback d-block" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="tags">Tags Product:</label>
-                    <input type="text" name="tags" class="form-control @error('tags')
-                    is-invalid
-                @enderror" id="tags"
-                    placeholder="Tags Product"
-                    value="{{old('tags')}}">
-                @error('tags')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
-                @enderror
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="tags">
+                        Tags Product:
+                    </label>
+                    <input type="text" name="tags" class="form-control @error('tags')
+                    is-invalid
+                    @enderror" id="tags"
+                    placeholder="Tags Product"
+                    value="{{old('tags')}}">
+                    @error('tags')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Add Product">

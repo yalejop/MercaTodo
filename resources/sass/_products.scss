@@ -22,6 +22,34 @@ trix-editor {
     background-color: #ffed4a;
 }
 
+.money {
+    display: flex;
+}
+
+.symbol {
+    font-weight: 700;
+    color: #39b982;
+    font-size: 35px;
+}
+
+.price-value {
+    color: #0a2b4e;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.stock {
+    color: #39b982;
+    font-size: 18px;
+}
+
+.stock-value {
+    color: #0a2b4e;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
 .user-title {
     color: #333;
     text-transform: uppercase;
@@ -54,11 +82,11 @@ trix-editor {
     url('../images/bg-newsletter.jpg');
     height:20rem;
     background-size: cover;
-     background-position: top center;
-    .texto-buscar {
-            p {
-                font-size: 1.4rem;
-                color: #FFF;
-            }
+    background-position: top center;
+    .search-text {
+        p {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
     }
 } 

@@ -7,7 +7,7 @@
 @endsection
     
 @section('content')
-    <div class="container">
+    <div class="mb-4 mt-2">
         <h2 class="user-title text-uppercase mb-4">
             Product Searched: {{$search}}
         </h2>
@@ -23,14 +23,23 @@
                     <p>
                         {{ Str::words(strip_tags($product->description), 20)}}
                     </p>
-
-                    <p class="item-price">
-                        ${{$product->price}}
-                    </p>
-
-                    <p>
-                        Stock:  {{$product->stock}}
-                    </p>
+                    <div class="money">
+                        <div class="symbol">
+                            $
+                        </div>
+                        <span class="price-value">
+                            {{$product->price}}
+                        </span>
+                        <span class="stock-value">
+                            COP
+                        </span>
+                    </div>
+                    <div class="stock mb-2">
+                        Stock:
+                        <span class="stock-value">
+                            {{$product->stock}}
+                        </span>
+                    </div>
 
                     <a href="{{route('products.show', $product->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Product</a>
                 </div>

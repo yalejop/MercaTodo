@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <article class="products-content">
+    <article class="products-content mt-2">
         <h1 class=" user-title-main mb-4">
             {{$products->title}}
         </h1>
@@ -17,15 +17,47 @@
         </div>
         <div class="products-meta mt-2">
             <div class="products">
-                <h2 class="my-3 text-primary">Description:
+                <h2 class="my-3 text-primary">
+                    Description:
                 </h2>
-                {!!$products->description!!}
+                <div class="stock-value">
+                    {!!$products->description!!}
+                </div>
             </div>
 
-            <div class="tags">
-                <h2 class="my-3 text-primary">Tags:
+            <div class="tags mb-2">
+                <h2 class="my-3 text-primary">
+                    Tags:
                 </h2>
-                {{$products->tags}}
+                <div class="stock-value">
+                    {{$products->tags}}
+                </div>
+            </div>
+
+            <p class="item-price">
+                <div class="money">
+                    <h2 class="my-3 text-primary">
+                        Price:    
+                    </h2>
+                    <div class="symbol">
+                        $
+                    </div>
+                    <span class="price-value">
+                        {{$products->price}}
+                    </span>
+                    <span class="stock-value">
+                        COP
+                    </span>
+                </div>
+            </p>
+
+            <div class="money">
+                <h2 class="text-primary my-3">
+                    Stock:
+                </h2>
+                <span class="price-value my-1">
+                    {{$products->stock}}
+                </span>
             </div>
 
         </div>

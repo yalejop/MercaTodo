@@ -103,6 +103,9 @@ class UserController extends Controller
         //
     }
 
+    /* this method is used for change the status of users in project
+    (if user is enable o disable) */
+
     public function changeStatus($id)
     {
         $users = User::find($id);
@@ -118,13 +121,4 @@ class UserController extends Controller
         return redirect('/users'); 
 
     }
-
-    /* public function __construct()
-    {   
-        $this->middleware(Admin::class)->only('edit');
-
-       $this->middleware('log')->only('index');
-
-        $this->middleware('subscribed')->except('store'); 
-    } */
 }
