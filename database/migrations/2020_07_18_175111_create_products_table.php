@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->float('price')->unsigned();
             $table->integer('stock')->unsigned();
             $table->string('status')->default('available');
-            $table->foreignId('categoria_id')->references('id')->on('categoria_productos')->default('Electronics')->comment('La categoria del producto');
+            $table->foreignId('categoria_id')->references('id')->on('categoria_productos')->comment('La categoria del producto');
             $table->timestamps();
         });
     }

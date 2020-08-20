@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\CategoriaProduct;
+use App\CategoriaProducto;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -36,7 +38,9 @@ class ProductController extends Controller
      */
     public function create(Product $products)
     {
-        return view('products.create', compact('products'));
+        $categories = CategoriaProducto::all();
+
+        return view('products.create', compact('products', 'categories'));
     }
 
     /**
@@ -48,12 +52,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|min:6',
-            'description' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+            'title' => 'required|min:6|max:140',
+            'description' => 'required|max:2000',
+            'price' => 'required|min:1',
+            'stock' => 'required|min:0',
+            'status' =>'required|in:available,unavailable',
             'image' => 'required|image',
-            'tags'=> 'required',
+            'category'=> 'required',
         ]);
 
         //obtener ruta de la imagen
@@ -70,8 +75,9 @@ class ProductController extends Controller
             'description' => $data['description'],
             'price' => $data['price'],
             'stock' => $data['stock'],
+            'status' => $data['status'],
             'image' => $route_image,
-            'tags' => $data['tags'],
+            'categoria_id' => $data['category'],
         ]);
 
         //return $products;
@@ -117,11 +123,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'title' => 'required|min:6',
-            'description' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
-            'tags'=> 'required',
+            'title' => 'required|min:6|max:140',
+            'description' => 'required|max:2000',
+            'price' => 'required|min:1',
+            'stock' => 'required|min:0',
+            'status' =>'required|in:available,unavailable',
+            'category'=> 'required',
         ]);
 
          //Asignar los valores
