@@ -99,19 +99,31 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="tags">
-                        Tags Product:
-                    </label>
-                    <input type="text" name="tags" class="form-control @error('tags')
-                    is-invalid
-                    @enderror" id="tags"
-                    placeholder="Tags Product"
-                    value="{{$products->tags}}">
-                    @error('tags')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
+                    <label>Status</label>
+                    <select class="custom-select" name="status" required>
+                        <option value="" selected>Select...</option>
+                        <option {{ old('status') == 'available' ? 'selected' : '' }} value="available">Available</option>
+                        <option {{ old('status') == 'unavailable' ? 'selected' : '' }} value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category Product:</label>
+                    <select name="category" class="form-control @error('category')
+                    is-invalid @enderror" id="category">
+                        <option value="">-- Choose One--</option>
+                        @foreach ($categories as $category)
+                            <option 
+                            value="{{$category->id}}"
+                            {{ old('category') == $category->id ? 'selected' : ''}}
+                            >{{$category->nombre}}
+                            </option>    
+                        @endforeach
+                    </select>
+                        @error('category')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Save">

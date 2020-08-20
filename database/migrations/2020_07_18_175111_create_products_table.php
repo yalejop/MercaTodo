@@ -16,12 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->string('image')->nullable();
-            $table->bigInteger('price');
-            $table->integer('stock');
-            $table->boolean('isEnable')->default(true);
-            $table->text('tags')->nullable();
+            $table->text('description', 1000);
+            $table->string('image');
+            $table->float('price')->unsigned();
+            $table->integer('stock')->unsigned();
+            $table->string('status')->default('available');
+            $table->foreignId('categoria_id')->references('id')->on('categoria_productos')->comment('La categoria del producto');
             $table->timestamps();
         });
     }
