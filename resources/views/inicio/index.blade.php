@@ -24,7 +24,6 @@
         <h2 class="user-title text-uppercase mb-4">Latest Products</h2>
         <div class="owl-carousel owl-theme">
             @foreach ($nuevos as $nuevo)
-                @if ($nuevo->isEnable)
                     <div class="card">
                      <img src="/storage/{{$nuevo->image}}" alt="Product Image" class="card-img-top">
                         <div class="card-body">
@@ -48,7 +47,6 @@
                             <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Product</a>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
     </div>
@@ -56,7 +54,6 @@
         <h2 class="user-title text-uppercase mb-4 mt-2">All Products</h2>
         <div class="row">
             @foreach ($nuevos as $nuevo)
-                @if ($nuevo->isEnable)
                     <div class="col-md-4 mb-2">
                         <div class="card">
                             <img src="/storage/{{$nuevo->image}}" alt="Imagen Producto" class="card-img-top">
@@ -82,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
     </div>
