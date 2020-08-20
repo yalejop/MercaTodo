@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\CategoriaProducto;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
@@ -36,7 +39,9 @@ class ProductController extends Controller
      */
     public function create(Product $products)
     {
-        return view('products.create', compact('products'));
+        $categories = CategoriaProducto::all();
+
+        return view('products.create', compact('products', 'categories'));
     }
 
     /**
@@ -45,16 +50,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $data = $request->validate([
-            'title' => 'required|min:6',
-            'description' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+       /*  $data = $request->validate([
+            'title' => 'required|min:6|max:140',
+            'description' => 'required|max:2000',
+            'price' => 'required|min:1',
+            'stock' => 'required|min:0',
+            'status' =>'required|in:available,unavailable',
             'image' => 'required|image',
-            'tags'=> 'required',
-        ]);
+            'category'=> 'required',
+        ]); */
 
         //obtener ruta de la imagen
         $route_image = $request['image']->store('upload-products', 'public');
@@ -66,18 +72,26 @@ class ProductController extends Controller
         //almacenar en la base de datos con modelo
 
         $products = Product::create([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'price' => $data['price'],
-            'stock' => $data['stock'],
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'stock' => $request['stock'],
+            'status' => $request['status'],
             'image' => $route_image,
-            'tags' => $data['tags'],
+            'categoria_id' => $request['category'],
         ]);
 
-        //return $products;
-        //return view('products.index' , compact('products'));
-        //return redirect()->action('ProductController@index');
-        return redirect()->route('products.index', compact('products'));
+       /*  $products = Product::create($request->validated([
+        'title' => $request['title'],
+        'description' => $request['description'],
+        'price' => $request['price'],
+        'stock' => $request['stock'],
+        'status' => $request['status'],
+        'image' => $route_image,
+        'categoria_id' => $request['category'],
+        ])); */
+
+        return redirect()->route('products.index', compact('products'))->withSuccess("The new product with id {$products->id} was created");
     }
 
     /**
@@ -104,7 +118,9 @@ class ProductController extends Controller
     {
         $products = Product::find($id);
 
-        return view('products.edit', compact('products'));
+        $categories = CategoriaProducto::all();
+
+        return view('products.edit', compact('products', 'categories'));
     }
 
     /**
@@ -114,26 +130,28 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
-        $data = $request->validate([
-            'title' => 'required|min:6',
-            'description' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
-            'tags'=> 'required',
-        ]);
+       /*  $data = $request->validate([
+            'title' => 'required|min:6|max:140',
+            'description' => 'required|max:2000',
+            'price' => 'required|min:1',
+            'stock' => 'required|min:0',
+            'status' =>'required|in:available,unavailable',
+            'category'=> 'required',
+        ]); */
 
          //Asignar los valores
          $products = Product::find($id);
-         $products->title = $data['title'];
-         $products->description = $data['description'];
-         $products->price = $data['price'];
-         $products->stock = $data['stock'];
-         $products->tags = $data['tags'];
+         $products->title = $request['title'];
+         $products->description = $request['description'];
+         $products->price = $request['price'];
+         $products->stock = $request['stock'];
+         $products->status = $request['status'];
+         $products->categoria_id = $request['category']; 
 
         //Si el usuario sube una nueva imagen
-        if(request('image')) {
+        if($request['image']) {
             //obtener ruta de la imagen
             $route_image = $request['image']->store('upload-products', 'public');
 
@@ -141,13 +159,28 @@ class ProductController extends Controller
             $img = Image::make( public_path("storage/{$route_image}"))->fit(1000, 550);
             $img->save();
 
-            //Asignar al Objeto
             $products->image = $route_image;
-        }
+
+        } /* else {
+            $route_image = [];
+        } */
+        
+        /* $products->update($request->validated([
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'stock' => $request['stock'],
+            'status' => $request['status'],
+            'image' => $route_image,
+            'categoria_id' => $request['category']
+            ]
+        )); */
+
+        //dd($products);
 
         $products->save();
        
-        return redirect()->route('products.index');
+        return redirect()->route('products.index', compact('products'))->withSuccess("The new product with id {$products->id} was created");
     }
 
     /**
@@ -164,7 +197,7 @@ class ProductController extends Controller
     /* this method is used for change the status of product in project
     (if product is enable o disable to show in inicio view) */
 
-    public function changeStatusProducts($id)
+    /* public function changeStatusProducts($id)
     {
         $products = Product::find($id);
         
@@ -179,7 +212,7 @@ class ProductController extends Controller
         
         return redirect(route('products.index')); 
 
-    }
+    } */
 
     /* this method is used to find out products with title same or
     similar at the search input in inicio view */
