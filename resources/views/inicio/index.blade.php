@@ -25,7 +25,7 @@
         <div class="owl-carousel owl-theme">
             @foreach ($nuevos as $nuevo)
                     <div class="card">
-                     <img src="/storage/{{$nuevo->image}}" alt="Product Image" class="card-img-top">
+                     <img src="storage/{{$nuevo->image}}" alt="Product Image" class="card-img-top" height="350">
                         <div class="card-body">
                             <h3>
                                 {{ Str::title($nuevo->title)}}
@@ -56,7 +56,7 @@
             @foreach ($nuevos as $nuevo)
                     <div class="col-md-4 mb-2">
                         <div class="card">
-                            <img src="/storage/{{$nuevo->image}}" alt="Imagen Producto" class="card-img-top">
+                            <img src="storage/{{$nuevo->image}}" alt="Imagen Producto" class="card-img-top" height="350">
                             <div class="card-body">
                                 <h3>
                                     {{ Str::title($nuevo->title)}}
