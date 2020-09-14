@@ -17,8 +17,6 @@
 
                 <div class="card-body">
 
-                    @include('custom.message')
-                    
                     <form action="{{ route('role.update', $role->id) }}" method="POST">
                     @csrf
                     @method('PUT')
