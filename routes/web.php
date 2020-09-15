@@ -38,6 +38,8 @@ Route::resource('/products', 'ProductController')->names('products');
 
 Route::resource('products.carts', 'ProductCartController')->only(['store', 'destroy']);
 
+Route::resource('carts', 'CartController')->only(['index']);
+
 /* Route::put('/productos/{id}', 'ProductController@changeStatusProducts')->name('changeStatusProducts'); */
 
 Auth::routes(['verify' => true]);

@@ -45,6 +45,11 @@
                                 <a href="{{route('products.index')}}" class="nav-link">Products</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('carts.index') }}">
+                                    Cart
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('users.index')}}" class="nav-link">Users List</a>
                             </li> 
                         </ul>
