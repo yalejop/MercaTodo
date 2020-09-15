@@ -36,6 +36,10 @@ Route::resource('/role', 'RoleController')->names('role');
 
 Route::resource('/products', 'ProductController')->names('products');
 
-Route::put('/productos/{id}', 'ProductController@changeStatusProducts')->name('changeStatusProducts');
+Route::resource('products.carts', 'ProductCartController')->only(['store', 'destroy']);
+
+Route::resource('carts', 'CartController')->only(['index']);
+
+/* Route::put('/productos/{id}', 'ProductController@changeStatusProducts')->name('changeStatusProducts'); */
 
 Auth::routes(['verify' => true]);

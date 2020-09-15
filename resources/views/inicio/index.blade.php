@@ -24,9 +24,8 @@
         <h2 class="user-title text-uppercase mb-4">Latest Products</h2>
         <div class="owl-carousel owl-theme">
             @foreach ($nuevos as $nuevo)
-                @if ($nuevo->isEnable)
                     <div class="card">
-                     <img src="/storage/{{$nuevo->image}}" alt="Product Image" class="card-img-top">
+                     <img src="storage/{{$nuevo->image}}" alt="Product Image" class="card-img-top" height="350">
                         <div class="card-body">
                             <h3>
                                 {{ Str::title($nuevo->title)}}
@@ -45,10 +44,16 @@
                                     COP
                                 </span>
                             </div>
+                            <form
+                                class="d-inline"
+                                method="POST"
+                                action="{{ route('products.carts.store', ['product' => $nuevo->id]) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-success mb-3">Add To Cart</button>
+                            </form>
                             <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Product</a>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
     </div>
@@ -56,10 +61,9 @@
         <h2 class="user-title text-uppercase mb-4 mt-2">All Products</h2>
         <div class="row">
             @foreach ($nuevos as $nuevo)
-                @if ($nuevo->isEnable)
                     <div class="col-md-4 mb-2">
                         <div class="card">
-                            <img src="/storage/{{$nuevo->image}}" alt="Imagen Producto" class="card-img-top">
+                            <img src="storage/{{$nuevo->image}}" alt="Imagen Producto" class="card-img-top" height="350">
                             <div class="card-body">
                                 <h3>
                                     {{ Str::title($nuevo->title)}}
@@ -78,11 +82,17 @@
                                         COP
                                     </span>
                                 </div>
+                                <form
+                                    class="d-inline"
+                                    method="POST"
+                                    action="{{ route('products.carts.store', ['product' => $nuevo->id]) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success mb-3">Add To Cart</button>
+                                </form>
                                 <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Products</a>
                             </div>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
     </div>

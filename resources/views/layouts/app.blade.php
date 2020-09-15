@@ -45,6 +45,11 @@
                                 <a href="{{route('products.index')}}" class="nav-link">Products</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('carts.index') }}">
+                                    Cart
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('users.index')}}" class="nav-link">Users List</a>
                             </li> 
                         </ul>
@@ -94,6 +99,22 @@
                     @yield('botones')
                 </div>
                 <main class="mt-1 col-12">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+
+                    @if (isset($errors) && $errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
                     @yield('content')
                 </main>
             </div>
