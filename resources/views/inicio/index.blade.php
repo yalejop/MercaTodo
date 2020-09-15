@@ -44,6 +44,13 @@
                                     COP
                                 </span>
                             </div>
+                            <form
+                                class="d-inline"
+                                method="POST"
+                                action="{{ route('products.carts.store', ['product' => $nuevo->id]) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-success mb-3">Add To Cart</button>
+                            </form>
                             <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Product</a>
                         </div>
                     </div>
@@ -75,6 +82,13 @@
                                         COP
                                     </span>
                                 </div>
+                                <form
+                                    class="d-inline"
+                                    method="POST"
+                                    action="{{ route('products.carts.store', ['product' => $nuevo->id]) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success mb-3">Add To Cart</button>
+                                </form>
                                 <a href="{{route('products.show', $nuevo->id)}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Show Products</a>
                             </div>
                         </div>
