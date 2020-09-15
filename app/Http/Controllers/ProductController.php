@@ -52,16 +52,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-       /*  $data = $request->validate([
-            'title' => 'required|min:6|max:140',
-            'description' => 'required|max:2000',
-            'price' => 'required|min:1',
-            'stock' => 'required|min:0',
-            'status' =>'required|in:available,unavailable',
-            'image' => 'required|image',
-            'category'=> 'required',
-        ]); */
-
         //obtener ruta de la imagen
         $route_image = $request['image']->store('upload-products', 'public');
 
@@ -80,16 +70,6 @@ class ProductController extends Controller
             'image' => $route_image,
             'categoria_id' => $request['category'],
         ]);
-
-       /*  $products = Product::create($request->validated([
-        'title' => $request['title'],
-        'description' => $request['description'],
-        'price' => $request['price'],
-        'stock' => $request['stock'],
-        'status' => $request['status'],
-        'image' => $route_image,
-        'categoria_id' => $request['category'],
-        ])); */
 
         return redirect()->route('products.index', compact('products'))->withSuccess("The new product with id {$products->id} was created");
     }
@@ -132,23 +112,14 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, $id)
     {
-       /*  $data = $request->validate([
-            'title' => 'required|min:6|max:140',
-            'description' => 'required|max:2000',
-            'price' => 'required|min:1',
-            'stock' => 'required|min:0',
-            'status' =>'required|in:available,unavailable',
-            'category'=> 'required',
-        ]); */
-
-         //Asignar los valores
-         $products = Product::find($id);
-         $products->title = $request['title'];
-         $products->description = $request['description'];
-         $products->price = $request['price'];
-         $products->stock = $request['stock'];
-         $products->status = $request['status'];
-         $products->categoria_id = $request['category']; 
+        //Asignar los valores
+        $products = Product::find($id);
+        $products->title = $request['title'];
+        $products->description = $request['description'];
+        $products->price = $request['price'];
+        $products->stock = $request['stock'];
+        $products->status = $request['status'];
+        $products->categoria_id = $request['category']; 
 
         //Si el usuario sube una nueva imagen
         if($request['image']) {
@@ -161,23 +132,8 @@ class ProductController extends Controller
 
             $products->image = $route_image;
 
-        } /* else {
-            $route_image = [];
-        } */
+        }
         
-        /* $products->update($request->validated([
-            'title' => $request['title'],
-            'description' => $request['description'],
-            'price' => $request['price'],
-            'stock' => $request['stock'],
-            'status' => $request['status'],
-            'image' => $route_image,
-            'categoria_id' => $request['category']
-            ]
-        )); */
-
-        //dd($products);
-
         $products->save();
        
         return redirect()->route('products.index', compact('products'))->withSuccess("The new product with id {$products->id} was created");
