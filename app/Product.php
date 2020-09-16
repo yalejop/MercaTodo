@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->morphedByMany(Order::class, 'productable')->withPivot('quantity');
     }
+
+    public function getTotalAttribute()
+    {
+        return $this->pivot->quantity * $this->price;
+    }
 }
