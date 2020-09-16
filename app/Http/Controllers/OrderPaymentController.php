@@ -55,7 +55,7 @@ class OrderPaymentController extends Controller
             $order->save();
 
             return redirect()
-                ->route('main')
+                ->route('inicio.index')
                 ->withSuccess("Thanks! Your payment for \${$order->total} was successful.");
         }, 5);
     }
