@@ -13,6 +13,8 @@ class OrderController extends Controller
     public function __construct(CartService $cartService)
     {
         $this->cartService = $cartService;
+
+        $this->middleware('auth');
     }
 
     /**
@@ -43,6 +45,22 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $order = $user->orders()->create([
+            'status' => 'pending',
+        ]);
+
+        $cart = $this->cartService->getFromCookie();
+
+        $cartProductsWithQuantity = $cart
+            ->products
+            ->mapWithKeys(function ($product) {
+                $element[$product->id] = ['quantity' => $product->pivot->quantity];
+
+                return $element;
+            });
+
+        $order->products()->attach($cartProductsWithQuantity->toArray());
     }
 }
