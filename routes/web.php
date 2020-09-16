@@ -42,6 +42,8 @@ Route::resource('carts', 'CartController')->only(['index']);
 
 Route::resource('orders', 'OrderController')->only(['create', 'store']);
 
+Route::resource('orders.payments', 'OrderPaymentController')->only(['create', 'store']);
+
 /* Route::put('/productos/{id}', 'ProductController@changeStatusProducts')->name('changeStatusProducts'); */
 
 Auth::routes(['verify' => true]);
